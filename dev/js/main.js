@@ -31,6 +31,10 @@ $(document).ready(function() {
         //render main page template using handlebars
         $('.content').html(main_tpl());
 
+        //parse URL for page name and translation
+        lang = document.location.pathname.replace(/^[\/]+/, "").replace(/[\/]$/, "").split('/')[0];
+        console.log(lang);
+
         //get user data and show them
         /*
         $.ajax({
@@ -44,6 +48,9 @@ $(document).ready(function() {
             }
         });
         */
+
+        //find page Name
+        // window.history.pushState("object or string", "Title", "/fa/index");
 
     });
 

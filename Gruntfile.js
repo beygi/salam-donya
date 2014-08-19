@@ -6,14 +6,49 @@ module.exports = function(grunt) {
         pkg: grunt.file.readJSON('package.json'),
 
         wiredep: {
-            target: {
+            rtl: {
                 // Point to the files that should be updated when
                 // you run `grunt wiredep`
                 src: [
-                    'index.html' // .html support...
+                    'index.rtl.html' // .html support...
                 ],
                 dependencies: true,
-                devDependencies: false
+                devDependencies: false,
+                fileTypes: {
+                  html: {
+                      block: /(([ \t]*)<!--\s*bower:*(\S*)\s*-->)(\n|\r|.)*?(<!--\s*endbower\s*-->)/gi,
+                      detect: {
+                        js: /<script.*src=['"](.+)['"]>/gi,
+                        css: /<link.*href=['"](.+)['"]/gi
+                      },
+                      replace: {
+                        js: '<script src="/{{filePath}}"></script>',
+                        css: '<link rel="stylesheet" href="/{{filePath}}" />'
+                      }
+                  }
+                }
+            },
+            ltr: {
+                // Point to the files that should be updated when
+                // you run `grunt wiredep`
+                src: [
+                    'index.ltr.html' // .html support...
+                ],
+                dependencies: true,
+                devDependencies: false,
+                fileTypes: {
+                  html: {
+                      block: /(([ \t]*)<!--\s*bower:*(\S*)\s*-->)(\n|\r|.)*?(<!--\s*endbower\s*-->)/gi,
+                      detect: {
+                        js: /<script.*src=['"](.+)['"]>/gi,
+                        css: /<link.*href=['"](.+)['"]/gi
+                      },
+                      replace: {
+                        js: '<script src="/{{filePath}}"></script>',
+                        css: '<link rel="stylesheet" href="/{{filePath}}" />'
+                      }
+                  }
+                }
             }
         },
         "bower-install-simple": {
@@ -65,7 +100,8 @@ module.exports = function(grunt) {
                     maxLineLength: 200
                 },
                 files: { // Dictionary of files
-                    'index.html': 'index.html' // 'destination': 'source'
+                    'index.rtl.html': 'index.rtl.html',
+                    'index.ltr.html': 'index.ltr.html'// 'destination': 'source'
                 }
             }
         },
@@ -88,7 +124,12 @@ module.exports = function(grunt) {
                     }, {
                         expand: true,
                         flatten: true,
-                        src: ['dev/index.html'],
+                        src: ['dev/index.rtl.html'],
+                        dest: ''
+                    },{
+                        expand: true,
+                        flatten: true,
+                        src: ['dev/index.ltr.html'],
                         dest: ''
                     }
                 ]

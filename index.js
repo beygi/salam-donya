@@ -55,30 +55,58 @@ server.get('/users/all', function(req, res, next) {
 
 
 
-
-
-
-
-
-// Serve index.html file
-server.get('/', function indexHTML(req, res, next) {
-    fs.readFile(__dirname + '/index.html', function(err, data) {
-        if (err) {
-            next(err);
-            return;
-        }
-        res.setHeader('Content-Type', 'text/html');
-        res.writeHead(200);
-        res.end(data);
-        next();
-    });
-});
-
 //server static files from lib directory
 server.get(/\/lib\/?.*/, restify.serveStatic({
     directory: __dirname,
     'default': 'index.html'
 }));
+
+
+// Serve index.html file
+server.get('/', function indexHTML(req, res, next) {
+    res.setHeader('Location', '/fa/');
+    res.writeHead(301);
+    res.end();
+    next();
+});
+
+server.get(/^\/(fa|en)$/, function indexHTML(req, res, next) {
+    res.setHeader('Location', '/'+req.params[0]+'/');
+    res.writeHead(301);
+    res.end();
+    next();
+});
+
+server.get(/^\/(fa|en)\/(.*)?/, function(req, res, next) {
+    lang = req.params[0];
+    page = req.params[1];
+    console.log(lang);
+    //send index
+    if (lang === 'fa') {
+        fs.readFile(__dirname + '/index.rtl.html', function(err, data) {
+            if (err) {
+                next(err);
+                return;
+            }
+            res.setHeader('Content-Type', 'text/html');
+            res.writeHead(200);
+            res.end(data);
+            next();
+        });
+    }
+    if (lang === 'en') {
+        fs.readFile(__dirname + '/index.ltr.html', function(err, data) {
+            if (err) {
+                next(err);
+                return;
+            }
+            res.setHeader('Content-Type', 'text/html');
+            res.writeHead(200);
+            res.end(data);
+            next();
+        });
+    }
+});
 
 
 //direct outout of images
