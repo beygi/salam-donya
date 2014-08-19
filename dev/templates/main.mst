@@ -38,7 +38,7 @@
     <div class="col-sm-4 col">
         <div class="well">
         <h1 class='block_title magazine'>شماره صفر ، معرفی</h1>
-        <img class='img-thumbnail img-responsive' src="/lib/app/css/magazine.jpeg" alt="">
+        <img class='img-thumbnail img-responsive cover' src="/lib/app/css/magazine.jpeg" alt="">
         <h5 class='brief'>در این شماره میخوانیم :</h5>
             <ul>
                 <li>تیتر ۱</li>
@@ -48,6 +48,7 @@
                 <li>تیتر ۱</li>
             </ul>
         <a href="" class="btn btn-primary pull-left">معرفی بیشتر + دانلود رایگان</a>
+        <div class="clearfix"></div>
         </div>
     </div>
 
