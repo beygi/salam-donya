@@ -1,0 +1,88 @@
+<script id="mainTpl" type="text/html">
+<img class='logo img-responsive' src="/lib/app/css/logo.png" alt="">
+<div class="container">
+<nav class="navbar navbar-default" role="navigation">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#"></a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="#">خانه</a></li>
+        <li><a href="#">درباره‌ی ما</a></li>
+        <li><a href="#">حمایت از ما</a></li>
+        <li><a href="#">تماس با ما</a></li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+
+<div class="row col-wrap">
+
+    <div class="col-sm-4 col">
+        <div class="well">
+            <h1 class='block_title twitter'>توییتر</h1>
+        </div>
+    </div>
+
+    <div class="col-sm-4 col">
+        <div class="well">
+        <h1 class='block_title magazine'>شماره صفر ، معرفی</h1>
+        <img class='img-thumbnail img-responsive' src="/lib/app/css/magazine.jpeg" alt="">
+        <h5 class='brief'>در این شماره میخوانیم :</h5>
+            <ul>
+                <li>تیتر ۱</li>
+                <li>تیتر ۱</li>
+                <li>تیتر ۱</li>
+                <li>تیتر ۱</li>
+                <li>تیتر ۱</li>
+            </ul>
+        <a href="" class="btn btn-primary pull-left">معرفی بیشتر + دانلود رایگان</a>
+        </div>
+    </div>
+
+    <div class="col-sm-4 col">
+        <div class="well">
+            <h1 class='block_title feed'>مطالب گنو/لینوکسی</h1>
+در دههٔ ۱۹۷۰ و اوایل دههٔ ۱۹۸۰، برنامه‌نویسان کامپیوتر تمامی آنچه را می‌نوشتند با دیگران به اشتراک می‌گذاشتند. هر شخصی متن برنامهٔ خود را در اختیار دیگر برنامه‌نویسان می‌گذاشت. اشتراک گذاری نرم‌افزار امری عادی بود.
+
+اما در اوایل دههٔ ۱۹۸۰ همه چیز به آرامی دگرگون شد. شرکت‌های نرم‌افزاری دیگر متن برنامه‌های خود را در اختیار دیگران قرار نمی‌دادند. برنامه‌نویسان نمی‌توانستند برنامه‌های دیگران را تغییر داده و آن را بهبود بخشند. از این پس به اشتراک گذاریِ نرم‌افزار جرم محسوب می‌شد.
+
+در همین سال‌ها ریچارد استالمن در آزمایشگاه هوش مصنوعیِ موسسهٔ تکنولوژیِ ماساچوست (ام‌آی‌تی) مشغول به کار بود. او معتقد بود که نرم‌افزار باید همواره آزاد بوده و همگان اجازهٔ ویرایش آن را داشته باشند. به عبارت دیگر نرم‌افزار باید آزاد باشد.
+
+اولین مرحله برای داشتن یک کامپیوترِ آزاد، وجود یک سیستم‌عامل آزاد بود. بنابراین ریچارد استالمن پروژهٔ گنو را آغاز کرد. در طی سال‌های ۱۹۸۴ تا ۱۹۸۵ او کامپایلر جی‌سی‌سی و ویرایشگر ایمکس را نوشته و منتشر کرد. به این ترتیب ابزارهای اولیهٔ مورد نیاز برای طراحی و ساخت یک سیستم‌عامل فراهم شد. در سال ۱۹۸۵ بنیاد نرم‌افزارهای آزاد پایه گذاری شد، مفهوم کپی‌لفت به وجود آمد و اجازه‌نامهٔ جامع و عمومی گنو (جی‌پی‌ال) برای حمایتِ نرم‌افزارهای آزاد و تضمین آزادی کابران نوشته شد.[۱]
+
+از آن زمان تا کنون افراد بسیاری به صورت داوطلبانه با این پروژه همکاری کرده و سیستم‌عامل گنو را پدید آورده‌اند.
+
+تا سال ۱۹۹۰ تمامی اجزای یک سیستم‌عامل به غیر از هستهٔ آن آماده بود. در سال ۱۹۹۱ لینوس توروالدز هستهٔ لینوکس را پدید آورد. ترکیب گنو با هستهٔ لینوکس یک سیستم‌عامل کامل شد. امروزه این سیستم‌عامل بیشتر با نام لینوکس شناخته می‌شود. اما حامیان و توسعه‌دهندگان گنو نام گنو/لینوکس را ترجیح می‌دهند چرا که نام گنو با فلسفهٔ آن که تولید مجموعه‌ای از نرم‌افزارهای آزاد
+        </div>
+    </div>
+
+</div>
+
+
+<div class="row base col-wrap">
+<!-- add a second row of wells or rounded corner divs immeadiately underneath-->
+<div class="col-sm-4 col-base"><div class="well"></div></div>
+<div class="col-sm-4 col-base"><div class="well"></div></div>
+<div class="col-sm-4 col-base"><div class="well"></div></div>
+</div><!-- close row -->
+
+
+<div class="row">
+    <div class="col-md-12 footer">
+        تمام حقوق برای لینوکس مگ محفوظ است
+    </div>
+</div>
+</div>
+</script>

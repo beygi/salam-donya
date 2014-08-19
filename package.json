@@ -1,0 +1,24 @@
+{
+  "name": "testApp",
+  "dependencies": {
+    "moment-jalaali": "",
+    "restify": "^2.8.1",
+    "socket.io": "^1.0.6",
+    "node-tweet-stream": "^1.2.2",
+    "request": "^2.39.0",
+    "mongodb": "^1.4.8",
+    "async": "^0.9.0",
+    "MD5": "^1.2.1"
+  },
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-wiredep": "^1.8.0",
+    "grunt-bower-install-simple": "^0.9.3",
+    "grunt-sass": "^0.14.0",
+    "grunt-contrib-cssmin": "^0.10.0",
+    "grunt-contrib-uglify": "^0.5.1",
+    "grunt-contrib-htmlmin": "^0.3.0",
+    "grunt-contrib-copy": "^0.5.0",
+    "grunt-contrib-imagemin": "^0.7.1"
+  }
+}
