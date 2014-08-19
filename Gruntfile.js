@@ -29,8 +29,7 @@ module.exports = function(grunt) {
                 }
             },
             ltr: {
-                // Point to the files that should be updated when
-                // you run `grunt wiredep`
+                //we must exclude some rtl specified from template
                 src: [
                     'index.ltr.html' // .html support...
                 ],
@@ -48,7 +47,8 @@ module.exports = function(grunt) {
                         css: '<link rel="stylesheet" href="/{{filePath}}" />'
                       }
                   }
-                }
+                },
+                exclude: ['lib/bootstrap-rtl/dist/css/bootstrap-rtl.css']
             }
         },
         "bower-install-simple": {
