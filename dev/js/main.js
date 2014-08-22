@@ -33,7 +33,9 @@ $(document).ready(function() {
 
         //parse URL for page name and translation
         lang = document.location.pathname.replace(/^[\/]+/, "").replace(/[\/]$/, "").split('/')[0];
+        page = document.location.pathname.replace(/^[\/]+/, "").replace(/[\/]$/, "").split('/')[1] || 'index';
         console.log(lang);
+        console.log(page);
 
         //get user data and show them
         /*

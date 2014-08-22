@@ -1,0 +1,104 @@
+{
+    magazines: [{
+        num: 0,
+        cover: "magazine.jpeg",
+        pdf: "/pdfs/magazine.pdf",
+        translations: [{
+            code: "fa",
+            data: {
+                title: "شماره صفر ، معرفی",
+                headLines: ["چگونه چرا شویم",
+                    "چرا نرم افزار باید آزاد باشد ",
+                    "سلامی چو بوی خوش دنیایی",
+                    "استالمن را در یابیم"
+                ],
+                text: "متن کامل معرفی این شماره‌ی مجله . میتواند <strong>اچ تی ام ال</strong> هم باشد ."
+            }
+        }, {
+            code: "en",
+            data: {
+                title: "#0 , intrdution",
+                headLines: ["how to become why",
+                    "why software should be free",
+                    "hello like a good smell of the world !",
+                    "find out Stallman !"
+                ],
+                text: "full text for this number , you can use <strong>html</strong> also"
+            }
+        }]
+    }],
+    pages: [{
+        url: "index",
+        translations: [{
+            code: "fa",
+            data: {
+                title: "ماهنامه‌ی سلام دنیا"
+            }
+        }, {
+            code: "en",
+            data: {
+                title: "Hello World magazine !"
+            }
+        }]
+    }, {
+        url: "about",
+        translations: [{
+            code: "fa",
+            data: {
+                title: "درباره‌ی ما",
+                text: "متن درباره‌ی ما"
+            }
+        }, {
+            code: "en",
+            data: {
+                title: "About Us",
+                text: "sample text for About Us page"
+            }
+        }]
+    }],
+    staticBlocks: [{
+        name: 'aboutMagazine',
+        translations: [{
+            code: "fa",
+            data: {
+                title: "معرفی مجله",
+                text: "در دههٔ ۱۹۷۰ و اوایل دههٔ ۱۹۸۰، برنامه‌نویسان کامپیوتر تمامی آنچه را می‌نوشتند با دیگران به اشتراک می‌گذاشتند. هر شخصی متن برنامهٔ خود را در اختیار دیگر برنامه‌نویسان می‌گذاشت. اشتراک گذاری نرم‌افزار امری عادی بود. اما در اوایل دههٔ ۱۹۸۰ همه چیز به آرامی دگرگون شد. شرکت‌های نرم‌افزاری دیگر متن برنامه‌های خود را در اختیار دیگران قرار نمی‌دادند. برنامه‌نویسان نمی‌توانستند برنامه‌های دیگران را تغییر داده و آن را بهبود بخشند. "
+            }
+        }, {
+            code: "en",
+            data: {
+                title: "magazine intrdution",
+                text: "sample text for english block"
+            }
+        }]
+    }],
+    saponsors: [{
+        translations: [{
+            code: "fa",
+            data: {
+                name: "گروه نرم افزاری سیوس",
+            }
+        }, {
+            code: "en",
+            data: {
+                name: "cvas group",
+            }
+        }],
+        logo: "cvas.png",
+        web: "http://cvas.ir"
+    }, {
+        translations: [{
+            code: "fa",
+            data: {
+                name: "خدمات وب بهرا",
+            }
+        }, {
+            code: "en",
+            data: {
+                name: "behra",
+            }
+        }],
+        logo: "behra.png",
+        web: "http://behra.ir"
+    }]
+}
