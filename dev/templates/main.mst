@@ -31,7 +31,7 @@
     <div class="col-sm-4 col">
         <div class="well">
             <h1 class='block_title feed'>{{first.title}}</h1>
-            {{first.text}}
+            {{{first.text}}}
         </div>
     </div>
 
