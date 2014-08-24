@@ -35,8 +35,6 @@ $(document).ready(function() {
         //parse URL for page name and translation
         lang = document.location.pathname.replace(/^[\/]+/, "").replace(/[\/]$/, "").split('/')[0];
         page = document.location.pathname.replace(/^[\/]+/, "").replace(/[\/]$/, "").split('/')[1] || 'index';
-        console.log(lang);
-        console.log(page);
 
         //get data.json
         $.ajax({
@@ -45,11 +43,6 @@ $(document).ready(function() {
         }).done(function(data) {
             remoteData = data;
             createPage(page, lang);
-            //render users
-            //for (i = 0; i < data.length; i++) {
-            //    if (data[i].fullname === undefined || data[i].fullname === '' || data[i].fullname === null) data[i].fullname = data[i].name;
-            //    $('.users').prepend(user_tpl(data[i]));
-            //}
         }).error(function(a, b, c) {
             console.log(a, b, c);
         });
