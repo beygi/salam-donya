@@ -66,6 +66,7 @@ server.get(/\/lib\/?.*/, restify.serveStatic({
     'default': 'index.html'
 }));
 
+
 //server static files from pdfs directory
 server.get(/\/pdfs\/?.*/, restify.serveStatic({
     directory: __dirname,
