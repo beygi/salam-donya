@@ -44,7 +44,6 @@ T.get('search/tweets', { q: '#SalamDonya', count: 30 }, function(err, data, resp
 	var s = b.toString('base64');
 	twitts.push({text : data.statuses[i].text , avatar : "/img/byUrl/"+s,name : data.statuses[i].user.screen_name,lang : data.statuses[i].lang});
 	}
-	console.log(twitts);
 });
 
 var stream = T.stream('statuses/filter', { track: '#SalamDonya' });
@@ -154,7 +153,7 @@ io.sockets.on('connection', function(socket) {
 });
 
 // Listen to port 8080
-server.listen(80, function() {
+server.listen(8080, function() {
     console.log('socket.io server listening at %s', server.url);
 });
 
