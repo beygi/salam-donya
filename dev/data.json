@@ -197,7 +197,8 @@
             "headLines": "در این شماره میخوانیم",
             "readMore": "معرفی بیشتر + دانلود رایگان",
             "download": "دانلود",
-            "footer": "    کلیه حقوق این وب‌سایت نزد ماهنامه تخصصی نرم‌افزارهای آزاد / متن‌باز سلام دنیا محفوظ است.    <br>    پیاده‌سازی <a href='https://github.com/beygi/salam-donya'>وب سایت</a> توسط <a href='http://beygi.org'> مهدی بیگی</a> ، میزبانی شده توسط سرورهای قدرتمند <a href='http://behra.ir'>خدمات وب بهرا</a>"
+            "footer": "    کلیه حقوق این وب‌سایت نزد ماهنامه تخصصی نرم‌افزارهای آزاد / متن‌باز سلام دنیا محفوظ است.    <br>    پیاده‌سازی <a href='https://github.com/beygi/salam-donya'>وب سایت</a> توسط <a href='http://beygi.org'> مهدی بیگی</a> ، میزبانی شده توسط سرورهای قدرتمند <a href='http://behra.ir'>خدمات وب بهرا</a>",
+            "twitter" : "توییتر"
         }
     }, {
         "code": "en",
@@ -205,8 +206,8 @@
             "headLines": "Head Lines",
             "readMore": "Free Download",
             "download": "Download",
-            "footer": "all rights reserved by salam donya magazine"
-
+            "footer": "all rights reserved by salam donya magazine",
+            "twitter" : "Twitter"
         }
     }]
 }

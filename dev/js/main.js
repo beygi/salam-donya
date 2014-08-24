@@ -99,6 +99,9 @@ function createPage(name, lang) {
                 title: block.title,
                 text: block.text
             };
+            buidData.second = {
+                title: buidData.trans.twitter
+            };
             buidData.magazine = findLastMagazineData(lang);
             buidData.magazine.cover = remoteData.magazines[remoteData.magazines.length - 1].cover;
             buidData.magazine.num = remoteData.magazines[remoteData.magazines.length - 1].num;

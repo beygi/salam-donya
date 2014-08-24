@@ -49,12 +49,6 @@ server.get('/users/all', function(req, res, next) {
 
 
 
-
-
-
-
-
-
 //server static files from lib directory
 server.get(/\/lib\/?.*/, restify.serveStatic({
     directory: __dirname,
@@ -62,12 +56,27 @@ server.get(/\/lib\/?.*/, restify.serveStatic({
 }));
 
 
-// Serve index.html file
-server.get('/', function indexHTML(req, res, next) {
+
+server.get(/\/pdfs\/?.*/,function indexHTML(req, res, next) {
     res.setHeader('Location', '/fa/');
     res.writeHead(301);
     res.end();
     next();
+});
+
+// Serve index.html file
+server.get('/', function indexHTML(req, res, next) {
+		//inform piwik for download
+        fs.readFile(__dirname + '/index.ltr.html', function(err, data) {
+            if (err) {
+                next(err);
+                return;
+            }
+            res.setHeader('Content-Type', 'text/html');
+            res.writeHead(200);
+            res.end(data);
+            next();
+        });
 });
 
 server.get(/^\/(fa|en)$/, function indexHTML(req, res, next) {
