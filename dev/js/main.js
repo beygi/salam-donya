@@ -88,16 +88,16 @@ function createPage(name, lang) {
             buidData.magazine.pdf = remoteData.magazines[remoteData.magazines.length - 1].pdf;
             $('.content').html(main_tpl(buidData));
             //get tweets and show them
-            $('img.cover').load(function(){
-              $.ajax({
-                  dataType: "json",
-                  url: '/tweets/all'
-              }).done(function(data) {
-                  //render tweets
-                  for (var i = data.length-1; i >= 0 ; i--) {
-                      renderTweet(data[i]);
-                  }
-              });
+            $('img.cover').load(function() {
+                $.ajax({
+                    dataType: "json",
+                    url: '/tweets/all'
+                }).done(function(data) {
+                    //render tweets
+                    for (var i = data.length - 1; i >= 0; i--) {
+                        renderTweet(data[i]);
+                    }
+                });
             });
         } else if (name === 'magazine') {
             //get magazine by id
@@ -121,18 +121,13 @@ function createPage(name, lang) {
         }
         document.title = buidData.pageData.title;
 
-  //<!-- Piwik -->
-    var _paq = _paq || [];
-    _paq.push(['trackPageView']);
-    _paq.push(['enableLinkTracking']);
-    (function() {
-      var u=(("https:" == document.location.protocol) ? "https" : "http") + "://piwik.salam-donya.ir/";
-      _paq.push(['setTrackerUrl', u+'piwik.php']);
-      _paq.push(['setSiteId', 1]);
-      var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0]; g.type='text/javascript';
-      g.defer=true; g.async=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
-    })();
-  //<!-- End Piwik Code -->
+        //<!-- Piwik -->
+        try {
+            _paq.push(['trackPageView', buidData.pageData.title]);
+        } catch (e) {
+            console.log(e);
+        }
+        //<!-- End Piwik Code -->
 
 
     } else {
@@ -218,7 +213,7 @@ function getTopMenus(lang, page) {
 
 
 function renderTweet(tweet) {
-    var bigger = ($('.tweets').parent().parent().prev().height()>$('.tweets').parent().parent().prev().prev().height())?$('.tweets').parent().parent().prev().height():$('.tweets').parent().parent().prev().prev().height();
-    $('.tweets').css("height",bigger-60+'px');
+    var bigger = ($('.tweets').parent().parent().prev().height() > $('.tweets').parent().parent().prev().prev().height()) ? $('.tweets').parent().parent().prev().height() : $('.tweets').parent().parent().prev().prev().height();
+    $('.tweets').css("height", bigger - 60 + 'px');
     $('.tweets').prepend(tweet_tpl(tweet));
 }
