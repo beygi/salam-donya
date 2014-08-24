@@ -88,14 +88,16 @@ function createPage(name, lang) {
             buidData.magazine.pdf = remoteData.magazines[remoteData.magazines.length - 1].pdf;
             $('.content').html(main_tpl(buidData));
             //get tweets and show them
-            $.ajax({
-                dataType: "json",
-                url: '/tweets/all'
-            }).done(function(data) {
-                //render tweets
-                for (var i = data.length-1; i >= 0 ; i--) {
-                    renderTweet(data[i]);
-                }
+            $('img.cover').load(function(){
+              $.ajax({
+                  dataType: "json",
+                  url: '/tweets/all'
+              }).done(function(data) {
+                  //render tweets
+                  for (var i = data.length-1; i >= 0 ; i--) {
+                      renderTweet(data[i]);
+                  }
+              });
             });
         } else if (name === 'magazine') {
             //get magazine by id
@@ -201,6 +203,7 @@ function getTopMenus(lang, page) {
 
 
 function renderTweet(tweet) {
-    $('.tweets').css("height",$('.tweets').parent().parent().prev().height()-60+'px');
+    var bigger = ($('.tweets').parent().parent().prev().height()>$('.tweets').parent().parent().prev().prev().height())?$('.tweets').parent().parent().prev().height():$('.tweets').parent().parent().prev().prev().height();
+    $('.tweets').css("height",bigger-60+'px');
     $('.tweets').prepend(tweet_tpl(tweet));
 }
