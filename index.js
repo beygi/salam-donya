@@ -66,11 +66,17 @@ server.get(/\/lib\/?.*/, restify.serveStatic({
     'default': 'index.html'
 }));
 
+//server static files from pdfs directory
+server.get(/\/pdfs\/?.*/, restify.serveStatic({
+    directory: __dirname,
+    'default': 'index.html'
+}));
 
 // Serve index.html file
-server.get(/\/pdfs\/?.*/, function indexHTML(req, res, next) {
+
+//server.get(/\/pdfs\/?.*/, function indexHTML(req, res, next) {
 		//inform piwik for download
-        fs.readFile(__dirname + '/index.ltr.html', function(err, data) {
+        /*fs.readFile(__dirname + '/index.ltr.html', function(err, data) {
             if (err) {
                 next(err);
                 return;
@@ -81,6 +87,7 @@ server.get(/\/pdfs\/?.*/, function indexHTML(req, res, next) {
             next();
         });
 });
+*/
 
 server.get('/',function indexHTML(req, res, next) {
     res.setHeader('Location', '/fa/');

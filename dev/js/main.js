@@ -123,6 +123,7 @@ function createPage(name, lang) {
 
         //<!-- Piwik -->
         try {
+            _paq.push(['setReferrerUrl','']);
             _paq.push(['trackPageView', buidData.pageData.title]);
         } catch (e) {
             console.log(e);
