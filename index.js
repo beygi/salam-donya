@@ -7,8 +7,12 @@ request = require('request');
 mongo = require('./extra_modules/mongo.js');
 var config = require("./config.js");
 var Twit = require('twit');
-
-
+var PiwikTracker = require('piwik-tracker');
+var piwik = new PiwikTracker(1, 'http://piwik.salam-donya.ir/piwik.php');
+// Optional: Respond to tracking errors
+piwik.on('error', function(err) {
+  console.log('error tracking request: ', err);
+});
 
 // Create the restify server
 var server = restify.createServer({
@@ -34,30 +38,49 @@ T = new Twit({
     consumer_secret: config.twitter.consumer_secret,
     access_token: config.twitter.token,
     access_token_secret: config.twitter.token_secret
-  });
-
-twitts = [];
-T.get('search/tweets', { q: '#SalamDonya', count: 30 }, function(err, data, response) {
-  for(var i=0;i<data.statuses.length;i++)
-	{
-	var b = new Buffer(data.statuses[i].user.profile_image_url);
-	var s = b.toString('base64');
-	twitts.push({text : data.statuses[i].text , avatar : "/img/byUrl/"+s,name : data.statuses[i].user.screen_name,lang : data.statuses[i].lang});
-	}
 });
 
-var stream = T.stream('statuses/filter', { track: '#SalamDonya' });
-stream.on('tweet', function (tweet) {
-  //add new twitt
-	var b = new Buffer(tweet.user.profile_image_url);
-	var s = b.toString('base64');
-	twitts.unshift({text : tweet.text , avatar : "/img/byUrl/"+s,name : tweet.user.screen_name,lang : tweet.lang});
-  //remove one old tweet
-  if (twitts.length>=30) {
-	twitts.pop();
-  }
-  console.log('new tweet received');
-  io.emit('tweet', {text : tweet.text , avatar : "/img/byUrl/"+s,name : tweet.user.screen_name,lang : tweet.lang});
+twitts = [];
+T.get('search/tweets', {
+    q: '#SalamDonya',
+    count: 30
+}, function(err, data, response) {
+    for (var i = 0; i < data.statuses.length; i++) {
+        var b = new Buffer(data.statuses[i].user.profile_image_url);
+        var s = b.toString('base64');
+        twitts.push({
+            text: data.statuses[i].text,
+            avatar: "/img/byUrl/" + s,
+            name: data.statuses[i].user.screen_name,
+            lang: data.statuses[i].lang
+        });
+    }
+});
+
+var stream = T.stream('statuses/filter', {
+    track: '#SalamDonya'
+});
+stream.on('tweet', function(tweet) {
+    //add new twitt
+    var b = new Buffer(tweet.user.profile_image_url);
+    var s = b.toString('base64');
+    twitts.unshift({
+        text: tweet.text,
+        avatar: "/img/byUrl/" + s,
+        name: tweet.user.screen_name,
+        lang: tweet.lang
+    });
+    //remove one old tweet
+    if (twitts.length >= 30) {
+        twitts.pop();
+    }
+    console.log('new tweet received');
+    io.emit('tweet', {
+        text: tweet.text,
+        avatar: "/img/byUrl/" + s,
+        name: tweet.user.screen_name,
+        lang: tweet.lang
+    });
 });
 
 //server static files from lib directory
@@ -66,31 +89,33 @@ server.get(/\/lib\/?.*/, restify.serveStatic({
     'default': 'index.html'
 }));
 
+//count pdf download
+server.get(/\/pdfs\/?(.*)/, function(req, res, next) {
+    console.log(req.params[0]);
+    var file = req.params[0];
+    //downloadPdf(file,req,res);
 
-//server static files from pdfs directory
-server.get(/\/pdfs\/?.*/, restify.serveStatic({
-    directory: __dirname,
-    'default': 'index.html'
-}));
+    piwik.track({
+        url: 'http://salam-donya.ir/RealPdfDownload/'+file,
+		download : 'http://salam-donya.ir/RealPdfDownload/'+file,
+		ua: req.headers['user-agent'],
+        action_name: 'Download pdf : '+file
+    });
+    fs.readFile(__dirname + '/pdfs/' + file, function(err, data) {
+        if (err) {
+            next(err);
+            return;
+        }
+        res.setHeader('Content-Type', 'application/pdf');
+        res.writeHead(200);
+        res.end(data);
+        next();
+    });
 
-// Serve index.html file
-
-//server.get(/\/pdfs\/?.*/, function indexHTML(req, res, next) {
-		//inform piwik for download
-        /*fs.readFile(__dirname + '/index.ltr.html', function(err, data) {
-            if (err) {
-                next(err);
-                return;
-            }
-            res.setHeader('Content-Type', 'text/html');
-            res.writeHead(200);
-            res.end(data);
-            next();
-        });
+    next();
 });
-*/
 
-server.get('/',function indexHTML(req, res, next) {
+server.get('/', function indexHTML(req, res, next) {
     res.setHeader('Location', '/fa/');
     res.writeHead(301);
     res.end();
@@ -98,14 +123,14 @@ server.get('/',function indexHTML(req, res, next) {
 });
 
 //return tweets
-server.get('/tweets/all',function indexHTML(req, res, next) {
-	res.json(twitts);
-	res.end();
+server.get('/tweets/all', function indexHTML(req, res, next) {
+    res.json(twitts);
+    res.end();
     next();
 });
 
 server.get(/^\/(fa|en)$/, function indexHTML(req, res, next) {
-    res.setHeader('Location', '/'+req.params[0]+'/');
+    res.setHeader('Location', '/' + req.params[0] + '/');
     res.writeHead(301);
     res.end();
     next();
@@ -210,3 +235,45 @@ function myCustomFormatJSON(req, res, body) {
 
     return data;
 }
+
+
+
+
+//download video
+var downloadPdf = function(fileName, req, res) {
+    var dir = __dirname + '/pdfs/';
+    var path = dir + fileName;
+    console.log(path);
+    var stat = fs.statSync(path);
+    var total = stat.size;
+    if (req.headers.range) {
+        var range = req.headers.range;
+        var parts = range.replace(/bytes=/, "").split("-");
+        var partialstart = parts[0];
+        var partialend = parts[1];
+
+        var start = parseInt(partialstart, 10);
+        var end = partialend ? parseInt(partialend, 10) : total - 1;
+        var chunksize = (end - start) + 1;
+        console.log('RANGE: ' + start + ' - ' + end + ' = ' + chunksize);
+
+        var file = fs.createReadStream(path, {
+            start: start,
+            end: end
+        });
+        res.writeHead(206, {
+            'Content-Range': 'bytes ' + start + '-' + end + '/' + total,
+            'Accept-Ranges': 'bytes',
+            'Content-Length': chunksize,
+            'Content-Type': 'application/pdf'
+        });
+        file.pipe(res);
+    } else {
+        console.log('ALL: ' + total);
+        res.writeHead(200, {
+            'Content-Length': total,
+            'Content-Type': 'application/pdf'
+        });
+        fs.createReadStream(path).pipe(res);
+    }
+};
