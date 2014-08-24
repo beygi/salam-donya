@@ -18,7 +18,7 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
             {{#each topMenus}}
-            <li><a class='{{{class}}}' href="/{{lang}}/{{url}}">{{{name}}}</a></li>
+            <li class='{{cssClass}}'><a href="/{{lang}}/{{url}}">{{{name}}}</a></li>
             {{/each}}
       </ul>
     </div><!-- /.navbar-collapse -->
@@ -45,7 +45,7 @@
             <li>{{{this}}}</li>
             {{/each}}
             </ul>
-        <a href="/{{lang}}/magazines/{{magazine.num}}/" class="btn btn-primary download">{{trans.readMore}}</a>
+        <a href="/{{lang}}/magazine/{{magazine.num}}/" class="btn btn-primary download">{{trans.readMore}}</a>
         <div class="clearfix"></div>
         </div>
     </div>
@@ -70,14 +70,28 @@
 
 <div class="row">
     <div class="col-md-12 footer">
-        تمام حقوق برای لینوکس مگ محفوظ است
+        {{{trans.footer}}}
     </div>
 </div>
 </div>
 </script>
 
 
+<script id="magazineTpl" type="text/html">
+        <img class='img-thumbnail img-responsive cover' src="/lib/app/css/{{magazine.cover}}" alt="">
+        <h5 class='brief'>{{trans.headLines}} : </h5>
+            <ul>
+            {{#each magazine.headLines}}
+            <li>{{{this}}}</li>
+            {{/each}}
+            </ul>
+            {{{magazine.text}}}
+            <div class="pdfDownload">
+                <a href="{{magazine.pdf}}" class="btn btn-primary btn-lg download">{{trans.download}}</a>
+            </div>
 
+        <div class="clearfix"></div>
+</script>
 
 
 
@@ -106,7 +120,7 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
             {{#each topMenus}}
-            <li><a class='{{{class}}}' href="/{{lang}}/{{url}}">{{{name}}}</a></li>
+            <li class='{{cssClass}}'><a href="/{{lang}}/{{url}}">{{{name}}}</a></li>
             {{/each}}
       </ul>
     </div><!-- /.navbar-collapse -->
@@ -132,7 +146,7 @@
 
 <div class="row">
     <div class="col-md-12 footer">
-        تمام حقوق برای لینوکس مگ محفوظ است
+        {{{trans.footer}}}
     </div>
 </div>
 </div>
