@@ -3,6 +3,7 @@ $blockBkColor : #E5E5E5
 $fontColor : black
 $mainFont : byekan
 $bodyBkColor : white
+$tweetColor : white
 
 body
   background: $bodyBkColor
@@ -99,3 +100,37 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6
 .pdfDownload
     text-align: center
     margin-top: 15px
+
+
+.tweet_user
+    float: right
+    font-size: 10px
+    margin-left: 15px
+    margin-top: 5px
+    overflow: hidden
+    text-align: center
+    width: 60px
+
+.tweet
+    background-color: darken($tweetColor, 10%)
+    border-radius: 3px
+    margin: 5px 0
+    font-family: $mainFont
+    color: $fontColor
+    overflow: hidden
+    border: 2px solid darken($tweetColor, 30%);
+    padding: 10px;
+
+.tweet_text
+    direction: ltr
+.lang_fa
+    direction: rtl
+.avatar
+    height: 50px
+    width: 50px
+    margin-top: 8px
+    border: 2px solid darken($tweetColor, 40%);
+
+.tweets
+    height: 100%
+    overflow-y: auto

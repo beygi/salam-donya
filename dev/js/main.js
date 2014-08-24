@@ -2,24 +2,23 @@ remoteData = {};
 
 $(document).ready(function() {
     //request permission for displaying a notification using webNotify and notifu.js
-    //Notify.requestPermission();
+    Notify.requestPermission();
 
     //open web socket
     var socket = io('');
     socket.on('connect', function() {
         //when tweet is received from socket , prepend it to tweet's area using tweet template and handlebars
-        /*
-    socket.on('tweet', function(data){
-        $('.tweets').prepend(tweet_tpl(data))
 
-        //display a notify when we have a new tweet
-        var myNotification = new Notify(data.name, {
-            body: data.text,
-            icon : data.avatar
+        socket.on('tweet', function(data) {
+            renderTweet(data);
+            //display a notify when we have a new tweet
+            var myNotification = new Notify(data.name, {
+                body: data.text,
+                icon: data.avatar
+            });
+            myNotification.show();
         });
-        myNotification.show();
-    });
-    */
+
     });
 
     //fetch all tempalates
@@ -31,6 +30,7 @@ $(document).ready(function() {
         main_tpl = Handlebars.compile($(template).filter('#mainTpl').html());
         big_tpl = Handlebars.compile($(template).filter('#bigTpl').html());
         magazine_tpl = Handlebars.compile($(template).filter('#magazineTpl').html());
+        tweet_tpl = Handlebars.compile($(template).filter('#tweetTpl').html());
 
         //parse URL for page name and translation
         lang = document.location.pathname.replace(/^[\/]+/, "").replace(/[\/]$/, "").split('/')[0];
@@ -44,7 +44,6 @@ $(document).ready(function() {
             url: '/lib/data.json'
         }).done(function(data) {
             remoteData = data;
-            console.log(data);
             createPage(page, lang);
             //render users
             //for (i = 0; i < data.length; i++) {
@@ -54,19 +53,6 @@ $(document).ready(function() {
         }).error(function(a, b, c) {
             console.log(a, b, c);
         });
-        //get user data and show them
-        /*
-        $.ajax({
-            dataType: "json",
-            url: '/users/all'
-        }).done(function(data) {
-            //render users
-            for (i = 0; i < data.length; i++) {
-                if (data[i].fullname === undefined || data[i].fullname === '' || data[i].fullname === null) data[i].fullname = data[i].name;
-                $('.users').prepend(user_tpl(data[i]));
-            }
-        });
-        */
 
         //find page Name
         // window.history.pushState("object or string", "Title", "/fa/index");
@@ -100,13 +86,24 @@ function createPage(name, lang) {
                 text: block.text
             };
             buidData.second = {
-                title: buidData.trans.twitter
+                title: buidData.trans.twitter,
+                text: "<div class='tweets'></div>"
             };
             buidData.magazine = findLastMagazineData(lang);
             buidData.magazine.cover = remoteData.magazines[remoteData.magazines.length - 1].cover;
             buidData.magazine.num = remoteData.magazines[remoteData.magazines.length - 1].num;
             buidData.magazine.pdf = remoteData.magazines[remoteData.magazines.length - 1].pdf;
             $('.content').html(main_tpl(buidData));
+            //get tweets and show them
+            $.ajax({
+                dataType: "json",
+                url: '/tweets/all'
+            }).done(function(data) {
+                //render tweets
+                for (var i = data.length-1; i >= 0 ; i--) {
+                    renderTweet(data[i]);
+                }
+            });
         } else if (name === 'magazine') {
             //get magazine by id
             var magazineId = document.location.pathname.replace(/^[\/]+/, "").replace(/[\/]$/, "").split('/')[2];
@@ -207,4 +204,10 @@ function getTopMenus(lang, page) {
         }
     }
     return menus;
+}
+
+
+function renderTweet(tweet) {
+    $('.tweets').css("height",$('.tweets').parent().parent().prev().height()-60+'px');
+    $('.tweets').prepend(tweet_tpl(tweet));
 }

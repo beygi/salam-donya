@@ -53,7 +53,7 @@
     <div class="col-sm-4 col">
         <div class="well">
             <h1 class='block_title twitter'>{{second.title}}</h1>
-            {{second.text}}
+            {{{second.text}}}
         </div>
     </div>
 
@@ -150,4 +150,19 @@
     </div>
 </div>
 </div>
+</script>
+
+
+
+<script id="tweetTpl" type="text/html">
+            <div class="tweet">
+                <div class="tweet_user">
+                    <img src='{{avatar}}' class="avatar img-rounded">
+                    <div class="tweet_user_name">
+                        {{name}}
+                    </div>
+                </div>
+                <div class="tweet_text lang_{{lang}}">{{text}}</div>
+                <div class="clearfix"></div>
+            </div>
 </script>
