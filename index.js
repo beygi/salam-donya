@@ -23,8 +23,7 @@ var server = restify.createServer({
 });
 
 //gzip response
-server.use(restify.gzipResponse());
-
+//server.use(restify.gzipResponse());
 server.use(restify.bodyParser());
 restify.defaultResponseHeaders = function(data) {
     this.header('Access-Control-Allow-Origin', '*');
@@ -95,7 +94,7 @@ server.get(/\/pdfs\/?(.*)/, function(req, res, next) {
 
     var file = decodeURI(req.params[0]);
     console.log(file);
-    //downloadPdf(file,req,res);
+
     if (fs.existsSync(__dirname + '/pdfs/' + file)) {
         piwik.track({
             token_auth: config.piwik.token_auth,
@@ -105,7 +104,10 @@ server.get(/\/pdfs\/?(.*)/, function(req, res, next) {
             ua: req.headers['user-agent'],
             action_name: 'Download pdf : ' + file
         });
-        fs.readFile(__dirname + '/pdfs/' + file, function(err, data) {
+        downloadPdf(file, req, res);
+        //res.end();
+        next();
+        /*fs.readFile(__dirname + '/pdfs/' + file, function(err, data) {
             if (err) {
                 next(err);
                 return;
@@ -115,6 +117,7 @@ server.get(/\/pdfs\/?(.*)/, function(req, res, next) {
             res.end(data);
             next();
         });
+        */
     } else {
         console.log('not exist');
         res.writeHead(404);
@@ -286,6 +289,12 @@ var downloadPdf = function(fileName, req, res) {
             'Content-Length': total,
             'Content-Type': 'application/pdf'
         });
-        fs.createReadStream(path).pipe(res);
+        var filestream = fs.createReadStream(path);
+        // This will wait until we know the readable stream is actually valid before piping
+        filestream.on('open', function() {
+            // This just pipes the read stream to the response object (which goes to the client)
+            filestream.pipe(res);
+        });
+
     }
 };
