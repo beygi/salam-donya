@@ -4,3 +4,7 @@ exports.twitter={
     token: '',
     token_secret: ''
 };
+
+exports.piwik={
+    token_auth : ''
+};
