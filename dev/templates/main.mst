@@ -80,14 +80,9 @@
 <script id="magazineTpl" type="text/html">
         <img class='img-thumbnail img-responsive cover' src="/lib/app/css/{{magazine.cover}}" alt="">
         <h5 class='brief'>{{trans.headLines}} : </h5>
-            <ul>
-            {{#each magazine.headLines}}
-            <li>{{{this}}}</li>
-            {{/each}}
-            </ul>
             {{{magazine.text}}}
             <div class="pdfDownload">
-                <a href="{{magazine.pdf}}" class="btn btn-primary btn-lg download">{{trans.download}}</a>
+                <a style='display:none' href="{{magazine.pdf}}" class="btn btn-primary btn-lg download">{{trans.download}}</a>
             </div>
 
         <div class="clearfix"></div>
