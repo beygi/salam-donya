@@ -84,7 +84,6 @@ module.exports = function(grunt) {
                     /*apply if you want to prevent changes to your variable and function names.
           mangle: false
           */
-                mangle: false
                 },
                 files: {
                     'lib/app/js/main.js': ['dev/js/main.js']

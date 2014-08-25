@@ -94,12 +94,12 @@ server.get(/\/lib\/?.*/, restify.serveStatic({
 server.get(/\/pdfs\/?(.*)/, function(req, res, next) {
 
     var file = decodeURI(req.params[0]);
-	console.log(file);
+    console.log(file);
     //downloadPdf(file,req,res);
     if (fs.existsSync(__dirname + '/pdfs/' + file)) {
         piwik.track({
-			token_auth : config.piwik.token_auth,
-			cip : req.headers['x-real-ip'],
+            token_auth: config.piwik.token_auth,
+            cip: req.headers['x-real-ip'],
             url: 'http://salam-donya.ir/RealPdfDownload/' + file,
             download: 'http://salam-donya.ir/RealPdfDownload/' + file,
             ua: req.headers['user-agent'],
@@ -116,9 +116,9 @@ server.get(/\/pdfs\/?(.*)/, function(req, res, next) {
             next();
         });
     } else {
-		console.log('not exist');
+        console.log('not exist');
         res.writeHead(404);
-		res.write("404 , file not found");
+        res.write("404 , file not found");
         res.end();
         next();
     }
