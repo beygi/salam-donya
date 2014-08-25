@@ -96,11 +96,10 @@ server.get(/\/pdfs\/?(.*)/, function(req, res, next) {
     var file = decodeURI(req.params[0]);
 	console.log(file);
     //downloadPdf(file,req,res);
-	console.log();
     if (fs.existsSync(__dirname + '/pdfs/' + file)) {
         piwik.track({
 			token_auth : config.piwik.token_auth,
-			cip : req.connection.remoteAddress,
+			cip : req.headers['x-real-ip'],
             url: 'http://salam-donya.ir/RealPdfDownload/' + file,
             download: 'http://salam-donya.ir/RealPdfDownload/' + file,
             ua: req.headers['user-agent'],
