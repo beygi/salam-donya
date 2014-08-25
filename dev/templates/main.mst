@@ -84,8 +84,8 @@
             <div class="pdfDownload">
                 <a style='display:none' href="{{magazine.pdf}}" class="btn btn-primary btn-lg download">{{trans.download}}</a>
             </div>
-
         <div class="clearfix"></div>
+        <div id="disqus_thread"></div>
 </script>
 
 
