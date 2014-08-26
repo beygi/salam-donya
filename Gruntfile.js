@@ -119,7 +119,7 @@ module.exports = function(grunt) {
                     }, {
                         expand: true,
                         flatten: true,
-                        src: ['dev/css/*.ttf','dev/css/*.jpeg', 'dev/css/*.jpg', 'dev/css/*.png','dev/css/*.gif'],
+                        src: ['dev/css/*.ttf','dev/css/*.woff','dev/css/*.jpeg', 'dev/css/*.jpg', 'dev/css/*.png','dev/css/*.gif'],
                         dest: 'lib/app/css/'
                     },
                     {
