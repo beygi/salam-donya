@@ -82,7 +82,7 @@
         <h5 class='brief'>{{trans.headLines}} : </h5>
             {{{magazine.text}}}
             <div class="pdfDownload">
-                <a style='display:none' href="{{magazine.pdf}}" class="btn btn-primary btn-lg download">{{trans.download}}</a>
+                <a href="{{magazine.pdf}}" class="btn btn-primary btn-lg download">{{trans.download}}</a>
             </div>
         <div class="clearfix"></div>
         <div id="disqus_thread"></div>
