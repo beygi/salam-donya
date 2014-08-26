@@ -127,7 +127,14 @@ module.exports = function(grunt) {
                         flatten: true,
                         src: ['dev/data.json'],
                         dest: 'lib/'
-                    }, {
+                    },
+                    {
+                        expand: true,
+                        flatten: true,
+                        src: ['dev/favicon.ico'],
+                        dest: 'lib/'
+                    },
+                    {
                         expand: true,
                         flatten: true,
                         src: ['dev/index.rtl.html'],
