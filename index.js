@@ -280,14 +280,16 @@ var downloadPdf = function(fileName, req, res) {
             'Content-Range': 'bytes ' + start + '-' + end + '/' + total,
             'Accept-Ranges': 'bytes',
             'Content-Length': chunksize,
-            'Content-Type': 'application/pdf'
+            'Content-Type': 'application/pdf',
+			'Content-disposition' : 'attachment; filename='+fileName
         });
         file.pipe(res);
     } else {
         console.log('ALL: ' + total);
         res.writeHead(200, {
             'Content-Length': total,
-            'Content-Type': 'application/pdf'
+            'Content-Type': 'application/pdf',
+			'Content-disposition' : 'attachment; filename='+fileName
         });
         var filestream = fs.createReadStream(path);
         // This will wait until we know the readable stream is actually valid before piping
