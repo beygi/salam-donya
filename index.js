@@ -49,7 +49,7 @@ T.get('search/tweets', {
         var b = new Buffer(data.statuses[i].user.profile_image_url);
         var s = b.toString('base64');
         //black list check
-        if (!(tweet.user.screen_name in config.twitter.blakListUsers)) {
+        if (!(data.statuses[i].user.screen_name in config.twitter.blakListUsers)) {
             twitts.push({
                 text: data.statuses[i].text,
                 avatar: "/img/byUrl/" + s,
