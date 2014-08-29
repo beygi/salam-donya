@@ -67,12 +67,14 @@ stream.on('tweet', function(tweet) {
     //add new twitt
     var b = new Buffer(tweet.user.profile_image_url);
     var s = b.toString('base64');
-    twitts.unshift({
-        text: tweet.text,
-        avatar: "/img/byUrl/" + s,
-        name: tweet.user.screen_name,
-        lang: tweet.lang
-    });
+    if (config.twitter.blakListUsers.indexOf(tweet.user.screen_name) == -1) {
+        twitts.unshift({
+            text: tweet.text,
+            avatar: "/img/byUrl/" + s,
+            name: tweet.user.screen_name,
+            lang: tweet.lang
+        });
+    }
     //remove one old tweet
     if (twitts.length >= 30) {
         twitts.pop();
