@@ -6,25 +6,25 @@ $bodyBkColor : white
 $tweetColor : white
 
 @font-face
-    font-family:'BNasim';
-    src:url('bbc-nassim-regular.woff') format('woff');
+    font-family:'BNasim'
+    src:url('bbc-nassim-regular.woff') format('woff')
 
 @font-face
-    font-family:'DroidNaskh';
-    src:url('DroidNaskh-Regular.ttf') format('truetype');
+    font-family:'DroidNaskh'
+    src:url('DroidNaskh-Regular.ttf') format('truetype')
 
 body
   background: $bodyBkColor
   font-family: $mainFont
 
 .container
-    margin-top: 10px;
+    margin-top: 10px
 
 .navbar-brand
-    margin-right: -15px;
+    margin-right: -15px
 
 .navbar > .container .navbar-brand, .navbar > .container-fluid .navbar-brand
-    margin-left: 0;
+    margin-left: 0
 
 .navbar-default,.btn-primary
     border-color: $mainColor
@@ -37,10 +37,10 @@ body
     color: white
 
 .navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus
-    background-color: darken($mainColor, 5%);
+    background-color: darken($mainColor, 5%)
 
 .navbar-nav li:hover
-    background-color: darken($mainColor, 5%);
+    background-color: darken($mainColor, 5%)
 
 .navbar-default .navbar-nav > li > a,.navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus
     color : $fontColor
@@ -58,9 +58,9 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6
   font-family: $mainFont
 
 .block_title
-    font-size: 24px;
-    margin-top: 2px;
-    text-align: center;
+    font-size: 24px
+    margin-top: 2px
+    text-align: center
 
 .footer
     margin-top: 20px
@@ -70,8 +70,8 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6
 @media (min-width: 768px)
     /* top row */
     .col .well
-        margin-bottom: -99999px;
-        padding-bottom: 99999px;
+        margin-bottom: -99999px
+        padding-bottom: 99999px
 
     /* bottom row */
     .col-base
@@ -79,10 +79,10 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6
 
 @media (max-width: 767px)
     .row.base
-        display:none;
+        display:none
 
 .col-wrap
-    overflow: hidden;
+    overflow: hidden
 
 .well
     text-align: justify
@@ -100,7 +100,7 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6
     background-color: $fontColor
 .navbar-default .navbar-toggle
     border-color: $fontColor
-    background-color: darken($mainColor, 10%);
+    background-color: darken($mainColor, 10%)
 .cover
     display: block
     margin : auto
@@ -126,8 +126,8 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6
     font-family: $mainFont
     color: $fontColor
     overflow: hidden
-    border: 2px solid darken($tweetColor, 30%);
-    padding: 10px;
+    border: 2px solid darken($tweetColor, 30%)
+    padding: 10px
 
 .tweet_text
     direction: ltr
@@ -139,7 +139,7 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6
     height: 50px
     width: 50px
     margin-top: 8px
-    border: 2px solid darken($tweetColor, 40%);
+    border: 2px solid darken($tweetColor, 40%)
 
 .tweets
     height: 100%
@@ -147,3 +147,5 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6
     overflow-x : hidden
 #disqus_thread
     margin-top : 20px
+.tweet_user_name
+	direction: ltr !important
