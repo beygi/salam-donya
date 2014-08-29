@@ -49,7 +49,7 @@ T.get('search/tweets', {
         var b = new Buffer(data.statuses[i].user.profile_image_url);
         var s = b.toString('base64');
         //black list check
-        if (!(data.statuses[i].user.screen_name in config.twitter.blakListUsers)) {
+        if (config.twitter.blakListUsers.indexOf(data.statuses[i].user.screen_name) == -1) {
             twitts.push({
                 text: data.statuses[i].text,
                 avatar: "/img/byUrl/" + s,
@@ -80,7 +80,7 @@ stream.on('tweet', function(tweet) {
     console.log('new tweet received');
 
     //check for blackListed Users
-    if (!(tweet.user.screen_name in config.twitter.blakListUsers)) {
+    if (config.twitter.blakListUsers.indexOf(tweet.user.screen_name) == -1) {
         io.emit('tweet', {
             text: tweet.text,
             avatar: "/img/byUrl/" + s,
