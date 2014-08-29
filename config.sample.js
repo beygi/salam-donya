@@ -2,7 +2,9 @@ exports.twitter={
     consumer_key: '',
     consumer_secret: '',
     token: '',
-    token_secret: ''
+    token_secret: '',
+    blakListUsers : [],
+    blackListWords : []
 };
 
 exports.piwik={

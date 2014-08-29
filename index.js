@@ -48,12 +48,15 @@ T.get('search/tweets', {
     for (var i = 0; i < data.statuses.length; i++) {
         var b = new Buffer(data.statuses[i].user.profile_image_url);
         var s = b.toString('base64');
-        twitts.push({
-            text: data.statuses[i].text,
-            avatar: "/img/byUrl/" + s,
-            name: data.statuses[i].user.screen_name,
-            lang: data.statuses[i].lang
-        });
+        //black list check
+        if (!(tweet.user.screen_name in config.twitter.blakListUsers)) {
+            twitts.push({
+                text: data.statuses[i].text,
+                avatar: "/img/byUrl/" + s,
+                name: data.statuses[i].user.screen_name,
+                lang: data.statuses[i].lang
+            });
+        }
     }
 });
 
@@ -75,12 +78,16 @@ stream.on('tweet', function(tweet) {
         twitts.pop();
     }
     console.log('new tweet received');
-    io.emit('tweet', {
-        text: tweet.text,
-        avatar: "/img/byUrl/" + s,
-        name: tweet.user.screen_name,
-        lang: tweet.lang
-    });
+
+    //check for blackListed Users
+    if (!(tweet.user.screen_name in config.twitter.blakListUsers)) {
+        io.emit('tweet', {
+            text: tweet.text,
+            avatar: "/img/byUrl/" + s,
+            name: tweet.user.screen_name,
+            lang: tweet.lang
+        });
+    }
 });
 
 //server static files from lib directory
@@ -281,7 +288,7 @@ var downloadPdf = function(fileName, req, res) {
             'Accept-Ranges': 'bytes',
             'Content-Length': chunksize,
             'Content-Type': 'application/pdf',
-			'Content-disposition' : 'attachment; filename='+fileName
+            'Content-disposition': 'attachment; filename=' + fileName
         });
         file.pipe(res);
     } else {
@@ -289,7 +296,7 @@ var downloadPdf = function(fileName, req, res) {
         res.writeHead(200, {
             'Content-Length': total,
             'Content-Type': 'application/pdf',
-			'Content-disposition' : 'attachment; filename='+fileName
+            'Content-disposition': 'attachment; filename=' + fileName
         });
         var filestream = fs.createReadStream(path);
         // This will wait until we know the readable stream is actually valid before piping
