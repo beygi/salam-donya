@@ -52,7 +52,7 @@
 
     <div class="col-sm-4 col">
         <div class="well">
-            <h1 class='block_title twitter'>{{{second.title}}}</h1>
+            <h1 class='block_title twitter'>{{second.title}}</h1>
             {{{second.text}}}
         </div>
     </div>
