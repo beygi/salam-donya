@@ -86,6 +86,7 @@ function createPage(name, lang) {
             buidData.magazine.cover = remoteData.magazines[remoteData.magazines.length - 1].cover;
             buidData.magazine.num = remoteData.magazines[remoteData.magazines.length - 1].num;
             buidData.magazine.pdf = remoteData.magazines[remoteData.magazines.length - 1].pdf;
+            buidData.sponsors=getSponors(lang);
             $('.content').html(main_tpl(buidData));
             //get tweets and show them
             $('img.cover').load(function() {
@@ -222,6 +223,22 @@ function getTopMenus(lang, page) {
         }
     }
     return menus;
+}
+
+function getSponors(lang) {
+    var sponsors = [];
+    for (var i = 0; i < remoteData.sponsors.length; i++) {
+        for (var j = 0; j < remoteData.sponsors[i].translations.length; j++) {
+            if (remoteData.sponsors[i].translations[j].code === lang) {
+                var sponsor = remoteData.sponsors[i].translations[j].data;
+                sponsor.web = remoteData.sponsors[i].web;
+                sponsor.logo = remoteData.sponsors[i].logo;
+                sponsor.lang = lang;
+                sponsors.push(sponsor);
+            }
+        }
+    }
+    return sponsors;
 }
 
 
