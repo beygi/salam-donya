@@ -68,6 +68,19 @@
 </div><!-- close row -->
 
 
+
+<div class="row">
+    <div class="col-md-12 footer">
+        {{#each sponsors}}
+        <div class="sponsor">
+            <img src="/lib/app/css/{{logo}}" alt="{{name}}">
+            <a target='blank' class="sponsor-name" href='{{web}}'>{{name}}</a>
+        </div>
+        {{/each}}
+    </div>
+</div>
+
+
 <div class="row">
     <div class="col-md-12 footer">
         {{{trans.footer}}}

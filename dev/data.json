@@ -124,7 +124,7 @@
             }
         }]
     }],
-    "saponsors": [{
+    "sponsors": [{
         "translations": [{
             "code": "fa",
             "data": {
@@ -152,6 +152,34 @@
         }],
         "logo": "behra.png",
         "web": "http://behra.ir"
+    },{
+        "translations": [{
+            "code": "fa",
+            "data": {
+                "name": "پارس پویش"
+            }
+        }, {
+            "code": "en",
+            "data": {
+                "name": "Pars Pooyesh"
+            }
+        }],
+        "logo": "pars_pooyesh.jpg",
+        "web": "http://parspooyesh.com"
+    },{
+        "translations": [{
+            "code": "fa",
+            "data": {
+                "name": "گروه پیشگامان"
+            }
+        }, {
+            "code": "en",
+            "data": {
+                "name": "pishgaman"
+            }
+        }],
+        "logo": "pishgaman.png",
+        "web": "http://pishgaman.com"
     }],
     "TopLinks": [{
         "url": "index",
