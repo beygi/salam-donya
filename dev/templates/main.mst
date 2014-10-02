@@ -18,7 +18,7 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
             {{#each topMenus}}
-            <li class='{{cssClass}}'><a href="/{{lang}}/{{url}}">{{{name}}}</a></li>
+            <li class='{{cssClass}}'><a href="{{url}}">{{{name}}}</a></li>
             {{/each}}
       </ul>
     </div><!-- /.navbar-collapse -->
@@ -128,7 +128,7 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
             {{#each topMenus}}
-            <li class='{{cssClass}}'><a href="/{{lang}}/{{url}}">{{{name}}}</a></li>
+            <li class='{{cssClass}}'><a href="{{url}}">{{{name}}}</a></li>
             {{/each}}
       </ul>
     </div><!-- /.navbar-collapse -->
