@@ -218,6 +218,9 @@ function getTopMenus(lang, page) {
                 if (menu.url === page) {
                     menu.cssClass = 'active';
                 }
+                if (menu.url.indexOf('http')==-1) {
+                  menu.url="/"+lang+"/"+menu.url;
+                }
                 menus.push(menu);
             }
         }
