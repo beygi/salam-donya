@@ -177,11 +177,9 @@
 
 
 <script id="previews_tpl" type="text/html">
+        <ul>
         {{#each magazines}}
-        <div class="magazine-mini">
-            <img src="/lib/app/css/{{logo}}" alt="{{name}}">
-            {{title}}
-            <a class="sponsor-name" href='/{{lang}}/magazine/{{num}}/'>{{title}}</a>
-        </div>
+            <li><a class="sponsor-name" href='/{{lang}}/magazine/{{num}}/'>{{title}}</a></li>
         {{/each}}
+        </ul>
 </script>
