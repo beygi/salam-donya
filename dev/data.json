@@ -153,7 +153,24 @@
                 "text": "magazine text"
             }
         }]
-    }],
+    },
+{
+        "url": "issues",
+        "translations": [{
+            "code": "fa",
+            "data": {
+                "title": "شماره های پیشین",
+                "text": "صفحه شماره های پیشین"
+            }
+        }, {
+            "code": "en",
+            "data": {
+                "title": "previews issues",
+                "text": "previews text"
+            }
+        }]
+    }
+],
     "staticBlocks": [{
         "name": "aboutMagazine",
         "translations": [{
@@ -323,16 +340,16 @@
             }
         }]
     }, {
-        "url": "magazine/0/",
+        "url": "issues",
         "translations": [{
             "code": "fa",
             "data": {
-                "name": "نسخه‌ی قبلی"
+                "name": "نسخه‌های قبلی"
             }
         }, {
             "code": "en",
             "data": {
-                "name": "Previews"
+                "name": "Preview Issues"
             }
         }]
     }

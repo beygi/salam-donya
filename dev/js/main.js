@@ -31,6 +31,7 @@ $(document).ready(function() {
         big_tpl = Handlebars.compile($(template).filter('#bigTpl').html());
         magazine_tpl = Handlebars.compile($(template).filter('#magazineTpl').html());
         tweet_tpl = Handlebars.compile($(template).filter('#tweetTpl').html());
+        previews_tpl = Handlebars.compile($(template).filter('#previews_tpl').html());
 
         //parse URL for page name and translation
         lang = document.location.pathname.replace(/^[\/]+/, "").replace(/[\/]$/, "").split('/')[0];
@@ -66,28 +67,28 @@ function createPage(name, lang) {
             }
         }
 
-        buidData = {};
-        buidData.trans = findTranslation(lang);
-        buidData.topMenus = getTopMenus(lang, name);
-        buidData.lang = lang;
-        buidData.pageData = page_data;
+        buildData = {};
+        buildData.trans = findTranslation(lang);
+        buildData.topMenus = getTopMenus(lang, name);
+        buildData.lang = lang;
+        buildData.pageData = page_data;
 
         if (name === 'index') {
             block = findBlock('aboutMagazine', lang);
-            buidData.first = {
+            buildData.first = {
                 title: block.title,
                 text: block.text
             };
-            buidData.second = {
-                title: buidData.trans.twitter,
+            buildData.second = {
+                title: buildData.trans.twitter,
                 text: "<div class='tweets'></div>"
             };
-            buidData.magazine = findLastMagazineData(lang);
-            buidData.magazine.cover = remoteData.magazines[remoteData.magazines.length - 1].cover;
-            buidData.magazine.num = remoteData.magazines[remoteData.magazines.length - 1].num;
-            buidData.magazine.pdf = remoteData.magazines[remoteData.magazines.length - 1].pdf;
-            buidData.sponsors=getSponors(lang);
-            $('.content').html(main_tpl(buidData));
+            buildData.magazine = findLastMagazineData(lang);
+            buildData.magazine.cover = remoteData.magazines[remoteData.magazines.length - 1].cover;
+            buildData.magazine.num = remoteData.magazines[remoteData.magazines.length - 1].num;
+            buildData.magazine.pdf = remoteData.magazines[remoteData.magazines.length - 1].pdf;
+            buildData.sponsors=getSponors(lang);
+            $('.content').html(main_tpl(buildData));
             //get tweets and show them
             $('img.cover').load(function() {
                 $.ajax({
@@ -105,12 +106,12 @@ function createPage(name, lang) {
             var magazineId = document.location.pathname.replace(/^[\/]+/, "").replace(/[\/]$/, "").split('/')[2];
             var magazine = findMagazineByNum(magazineId, lang);
             if (magazine) {
-                buidData.magazine = magazine;
-                buidData.pageData = {
+                buildData.magazine = magazine;
+                buildData.pageData = {
                     title: magazine.title,
-                    text: magazine_tpl(buidData)
+                    text: magazine_tpl(buildData)
                 };
-                $('.content').html(big_tpl(buidData));
+                $('.content').html(big_tpl(buildData));
                 var disqus_shortname = 'salamdonya'; // required: replace example with your forum shortname
 
                 /* * * DON'T EDIT BELOW THIS LINE * * */
@@ -122,22 +123,29 @@ function createPage(name, lang) {
                     (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
                 })();
             } else {
-                buidData.pageData = {
+                buildData.pageData = {
                     title: "404",
                     text: "404"
                 };
-                $('.content').html(big_tpl(buidData));
+                $('.content').html(big_tpl(buildData));
             }
-
+        } else if (name === 'issues') {
+          buildData.magazines=[];
+          for(var j=0;j<remoteData.magazines.length;j++)
+          {
+            buildData.magazines.push(findMagazineByNum(remoteData.magazines[j].num, lang));
+          }
+          buildData.pageData.text = previews_tpl(buildData);
+          $('.content').html(big_tpl(buildData));
         } else {
-            $('.content').html(big_tpl(buidData));
+            $('.content').html(big_tpl(buildData));
         }
-        document.title = buidData.pageData.title;
+        document.title = buildData.pageData.title;
 
         //<!-- Piwik -->
         try {
             _paq.push(['setReferrerUrl', document.referrer]);
-            _paq.push(['trackPageView', buidData.pageData.title]);
+            _paq.push(['trackPageView', buildData.pageData.title]);
         } catch (e) {
             console.log(e);
         }
@@ -145,12 +153,12 @@ function createPage(name, lang) {
 
 
     } else {
-        buidData = {};
-        buidData.pageData = {
+        buildData = {};
+        buildData.pageData = {
             title: "404",
             text: "404"
         };
-        $('.content').html(big_tpl(buidData));
+        $('.content').html(big_tpl(buildData));
     }
 }
 
@@ -200,6 +208,7 @@ function findMagazineByNum(num, lang) {
                     magazine.num = remoteData.magazines[j].num;
                     magazine.cover = remoteData.magazines[j].cover;
                     magazine.pdf = remoteData.magazines[j].pdf;
+                    magazine.lang = lang;
                     return magazine;
                 }
             }

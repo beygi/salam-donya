@@ -174,3 +174,14 @@
                 <div class="clearfix"></div>
             </div>
 </script>
+
+
+<script id="previews_tpl" type="text/html">
+        {{#each magazines}}
+        <div class="magazine-mini">
+            <img src="/lib/app/css/{{logo}}" alt="{{name}}">
+            {{title}}
+            <a class="sponsor-name" href='/{{lang}}/magazine/{{num}}/'>{{title}}</a>
+        </div>
+        {{/each}}
+</script>
