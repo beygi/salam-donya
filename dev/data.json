@@ -320,6 +320,21 @@
         }],
         "logo": "rapidpars.png",
         "web": "http://rapidpars.com/"
+    },
+    {
+        "translations": [{
+            "code": "fa",
+            "data": {
+                "name": "گروه راهبردی خاک"
+            }
+        }, {
+            "code": "en",
+            "data": {
+                "name": "Khak group"
+            }
+        }],
+        "logo": "khak.png",
+        "web": "http://khak.co"
     }],
     "TopLinks": [{
         "url": "index",
