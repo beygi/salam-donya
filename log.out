@@ -1,17 +1,2 @@
 js-bson: Failed to load c++ bson extension, using pure JS version
 socket.io server listening at http://0.0.0.0:8080
-
-/home/mahdy/Projects/salam-donya/mainWeb.js:48
-    for (var i = 0; i < data.statuses.length; i++) {
-                            ^
-TypeError: Cannot read property 'statuses' of null
-    at T.stream.track (/home/mahdy/Projects/salam-donya/mainWeb.js:48:29)
-    at responseHandler (/home/mahdy/Projects/salam-donya/node_modules/twit/lib/oarequest.js:303:14)
-    at ClientRequest.<anonymous> (/home/mahdy/Projects/salam-donya/node_modules/twit/node_modules/oauth/lib/oauth.js:397:7)
-    at ClientRequest.EventEmitter.emit (events.js:95:17)
-    at CleartextStream.socketErrorListener (http.js:1547:9)
-    at CleartextStream.EventEmitter.emit (events.js:95:17)
-    at Socket.onerror (tls.js:1445:17)
-    at Socket.EventEmitter.emit (events.js:117:20)
-    at net.js:440:14
-    at process._tickDomainCallback (node.js:459:13)
